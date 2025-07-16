@@ -45,11 +45,11 @@ class FutureTask {
             return LocalTime.now().toString()
         }
 
-        fun printlnWithResult(result: String) {
+        private fun printlnWithResult(result: String) {
             println("Thread Name:$result");
         }
 
-        fun printlnWithException(): String {
+        private fun printlnWithException(): String {
             var a = 3;
             var b = 0;
             var c = a / b;
