@@ -1,24 +1,29 @@
 package org.agmtopy.future
 
+import java.util.concurrent.TimeUnit
+
+
+/**
+ * <b>链式调用</b>
+ */
 fun main() {
     val future = Completion_Stage()
-    future.whenComplete()
     println("---------------------------------------")
-    future.handle()
+    future.thenApply()
 }
-
 
 class Completion_Stage {
 
     /**
-     * thenApply()将fn的结果传递到fn2中,执行线程为同一个线程,类似在fn执行完成后继续执行fn2
+     * thenApply()将fn的结果传递到fn2中,执行线程为同一个线程,类似在fn执行完成后继续执行fn2</br>
      * 有返回值
      * 同组方法:thenApplyAsync:异步执行或指定线程池异步执行
      */
     fun thenApply() {
         val fn = FutureTask.create_future()
         //将fn的结果传递到consumer_future函数中
-        val fn2 = fn.thenApply { fn_result -> FutureTask.consumer_future(fn_result) }
+        val fn2 = fn.thenApply {  FutureTask.create_future_exception().get() }
+        TimeUnit.SECONDS.sleep(2)
         fn2.get()
     }
 

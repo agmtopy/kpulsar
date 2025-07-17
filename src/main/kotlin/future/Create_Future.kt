@@ -1,9 +1,11 @@
 package org.agmtopy.future
 
-import java.time.LocalTime
 import java.util.concurrent.CompletableFuture
 
 
+/**
+ * 创建Future
+ */
 fun main() {
     val future = Create_Future()
     future.completedFuture()
@@ -22,21 +24,21 @@ class Create_Future {
      */
     fun supplyAsync() {
         val future = CompletableFuture.supplyAsync {
-            return@supplyAsync FutureTask.printlnWithString()
+            return@supplyAsync FutureTask.printlnWithException()
         }
         val result = future.get();
         println("main thread result:$result")
     }
 
     /**
-     * runAsync异提交任务,使用ForkJoinPool.commonPool异步执行
-     * 带返回结果
+     * runAsync提交任务,使用ForkJoinPool.commonPool异步执行
+     * 无返回结果
      * 同组方法: runAsync(Runnable runnable, Executor executor)
      */
     fun runAsync() {
         val future = CompletableFuture.runAsync {
 //            return@runAsync printlnWithString()
-            FutureTask.printlnWithVoid()
+            FutureTask.printlnWithException()
         }
         val result = future.get();
         //返回结果为null
@@ -48,7 +50,7 @@ class Create_Future {
      */
     fun completedFuture() {
         val future = CompletableFuture.completedFuture {
-            return@completedFuture FutureTask.printlnWithString()
+            return@completedFuture FutureTask.printlnWithException()
         }
         val result = future.get();
         //返回结果为null

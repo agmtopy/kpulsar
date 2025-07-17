@@ -49,7 +49,7 @@ class FutureTask {
             println("Thread Name:$result");
         }
 
-        private fun printlnWithException(): String {
+        fun printlnWithException(): String {
             var a = 3;
             var b = 0;
             var c = a / b;
